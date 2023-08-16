@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:list_item_for_emeralds",
+  "profession":"cvr:example",
+  "career": "career",
+  "level": 1,
+  "trade":{
+    "from": {
+      "minPrice": 1,
+      "maxPrice": 2
+    },
+    "to": {
+      "item": {
+        "item": "minecraft:apple",
+        "count": 10,
+        "data": 0,
+        "nbt": "{haha:true}",
+        "enchantment": [
+          {
+            "name": "minecraft:fire_protection",
+            "level": 114
+          }
+        ]
+      }
+    }
+  }
+}
