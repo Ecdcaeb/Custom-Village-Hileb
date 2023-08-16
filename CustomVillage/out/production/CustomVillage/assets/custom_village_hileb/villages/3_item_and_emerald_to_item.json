@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:item_and_emerald_to_item",
+  "profession":"cvr:example",
+  "career": "career",
+  "level": 1,
+  "level": 1,
+  "trade":{
+    "from": {
+      "minPrice": 1,
+      "maxPrice": 2,
+      "item": "minecraft:dirt"
+    },
+    "to": {
+      "minPrice": 3,
+      "maxPrice": 4,
+      "item": "minecraft:iron_sword"
+    }
+  }
+}

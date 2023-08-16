@@ -1,0 +1,9 @@
+{
+  "package": "com.Hileb.core.mixin.mixin",
+  "refmap": "mixins.core.refmap.json",
+  "mixins": ["MixinEntityEnderMan"],
+  "client": [],
+  "minVersion": 0.8,
+  "compatibilityLevel": "JAVA_8",
+  "server": []
+}

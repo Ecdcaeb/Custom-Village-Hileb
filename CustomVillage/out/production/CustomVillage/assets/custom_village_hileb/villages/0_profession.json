@@ -1,0 +1,6 @@
+{
+  "type": "minecraft:profession",
+  "professionName": "cvr:example",
+  "villageTexture": "null:null.png",
+  "zombieTexture": "null:null.png"
+}
