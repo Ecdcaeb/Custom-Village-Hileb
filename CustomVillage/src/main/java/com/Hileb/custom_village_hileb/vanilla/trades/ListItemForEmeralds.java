@@ -1,5 +1,6 @@
 package com.Hileb.custom_village_hileb.vanilla.trades;
 
+import com.Hileb.custom_village_hileb.vanilla.trades.itrades.ListItemForEmeraldsHileb;
 import com.google.gson.JsonObject;
 import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.entity.passive.EntityVillager;
@@ -26,13 +27,8 @@ public class ListItemForEmeralds {
             int maxPrice=JsonUtils.getInt(from,"maxPrice");
             JsonObject to=JsonUtils.getJsonObject(trade,"to");
             JsonObject item=JsonUtils.getJsonObject(to,"item");
-            ItemStack stack=TradeBase.getItemStack(item);
-            if (to.has("enchantment")){
-                for(EnchantmentData data:TradeBase.loadEnch(to)){
-                    stack.addEnchantment(data.enchantment,data.enchantmentLevel);
-                }
-            }
-            return new EntityVillager.ListItemForEmeralds(stack.copy(),new EntityVillager.PriceInfo(minPrice,maxPrice));
+            ItemStack stack=TradeBase.getFullItemStack(item);
+            return new ListItemForEmeraldsHileb(stack,new EntityVillager.PriceInfo(minPrice,maxPrice));
         }
     }
 }

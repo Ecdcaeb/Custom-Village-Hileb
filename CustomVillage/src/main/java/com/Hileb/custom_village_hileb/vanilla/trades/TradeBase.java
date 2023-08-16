@@ -130,4 +130,18 @@ public class TradeBase {
         }
         return enchantmentData;
     }
+    public static ItemStack getFullItemStack(JsonObject jsonObject){
+        ItemStack stack=TradeBase.getItemStack(jsonObject);
+        if (jsonObject.has("enchantment")){
+            for(EnchantmentData data:TradeBase.loadEnch(jsonObject)){
+                stack.addEnchantment(data.enchantment,data.enchantmentLevel);
+            }
+        }
+        return stack;
+    }
+    public static EntityVillager.PriceInfo loadPrice(JsonObject jsonObject){
+        int minPrice2=JsonUtils.getInt(jsonObject,"min");
+        int maxPrice2=JsonUtils.getInt(jsonObject,"max");
+        return new EntityVillager.PriceInfo(minPrice2,maxPrice2);
+    }
 }

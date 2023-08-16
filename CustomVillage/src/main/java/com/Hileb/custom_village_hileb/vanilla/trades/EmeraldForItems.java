@@ -1,5 +1,6 @@
 package com.Hileb.custom_village_hileb.vanilla.trades;
 
+import com.Hileb.custom_village_hileb.vanilla.trades.itrades.EmeraldForItemsHileb;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
@@ -27,11 +28,10 @@ public class EmeraldForItems {
         @Override
         public EntityVillager.ITradeList loadTrade(JsonObject trade) {
             JsonObject from= JsonUtils.getJsonObject(trade,"from");
-            int minPrice=JsonUtils.getInt(from,"minPrice");
-            int maxPrice=JsonUtils.getInt(from,"maxPrice");
             JsonObject to=JsonUtils.getJsonObject(trade,"to");
-            Item item=ForgeRegistries.ITEMS.getValue(new ResourceLocation(JsonUtils.getString(to,"item")));
-            return new EntityVillager.EmeraldForItems(item,new EntityVillager.PriceInfo(minPrice,maxPrice));
+            return new EmeraldForItemsHileb(TradeBase.getFullItemStack(JsonUtils.getJsonObject(to,"item")),
+                    TradeBase.loadPrice(JsonUtils.getJsonObject(from,"price")
+                    ));
         }
     }
 

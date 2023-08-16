@@ -6,14 +6,44 @@
   "level": 1,
   "trade":{
     "from": {
-      "minPrice": 1,
-      "maxPrice": 2,
-      "item": "minecraft:dirt"
+      "price": {
+        "min": 1,
+        "max": 2
+      },
+      "count": {
+        "min": 1,
+        "max": 2
+      },
+      "item": {
+        "item": "minecraft:dirt",
+        "count": 1,
+        "data": 0,
+        "nbt": "{haha:true}",
+        "enchantment": [
+          {
+            "name": "minecraft:fire_protection",
+            "level": 12
+          }
+        ]
+      }
     },
     "to": {
-      "minPrice": 3,
-      "maxPrice": 4,
-      "item": "minecraft:iron_sword"
+      "count":{
+        "min": 3,
+        "max": 4
+      },
+      "item": {
+        "item": "minecraft:iron_sword",
+        "count": 1,
+        "data": 0,
+        "nbt": "{haha:true}",
+        "enchantment": [
+          {
+            "name": "minecraft:fire_protection",
+            "level": 5
+          }
+        ]
+      }
     }
   }
 }

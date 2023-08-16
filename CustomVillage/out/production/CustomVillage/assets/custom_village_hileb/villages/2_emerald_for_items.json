@@ -5,11 +5,24 @@
   "level": 1,
   "trade":{
     "from": {
-      "minPrice": 1,
-      "maxPrice": 2
+      "price": {
+        "min": 1,
+        "max": 2
+      }
     },
     "to": {
-      "item": "minecraft:diamond"
+      "item": {
+        "item": "minecraft:diamond",
+        "count": 1,
+        "data": 0,
+        "nbt": "{haha:true}",
+        "enchantment": [
+          {
+            "name": "minecraft:fire_protection",
+            "level": 12
+          }
+        ]
+      }
     }
   }
 }

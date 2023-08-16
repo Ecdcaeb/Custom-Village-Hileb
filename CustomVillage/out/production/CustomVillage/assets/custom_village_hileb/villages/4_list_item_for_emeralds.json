@@ -13,14 +13,14 @@
         "item": "minecraft:apple",
         "count": 10,
         "data": 0,
-        "nbt": "{haha:true}"
-      },
-      "enchantment": [
-        {
-          "name": "minecraft:fire_protection",
-          "level": 114
-        }
-      ]
+        "nbt": "{haha:true}",
+        "enchantment": [
+          {
+            "name": "minecraft:fire_protection",
+            "level": 114
+          }
+        ]
+      }
     }
   }
 }
