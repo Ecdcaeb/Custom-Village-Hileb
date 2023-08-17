@@ -5,12 +5,6 @@
   "level": 1,
   "trade":{
     "from": {
-      "price": {
-        "min": 1,
-        "max": 2
-      }
-    },
-    "to": {
       "item": {
         "item": "minecraft:diamond",
         "count": 1,
@@ -22,6 +16,12 @@
             "level": 12
           }
         ]
+      }
+    },
+    "to": {
+      "price": {
+        "min": 1,
+        "max": 2
       }
     }
   }

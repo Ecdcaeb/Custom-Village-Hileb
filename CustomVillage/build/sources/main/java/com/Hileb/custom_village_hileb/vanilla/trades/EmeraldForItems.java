@@ -1,19 +1,10 @@
 package com.Hileb.custom_village_hileb.vanilla.trades;
 
 import com.Hileb.custom_village_hileb.vanilla.trades.itrades.EmeraldForItemsHileb;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.JsonSyntaxException;
 import net.minecraft.entity.passive.EntityVillager;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.JsonToNBT;
-import net.minecraft.nbt.NBTException;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 /**
  * @Project CustomVillage
@@ -29,8 +20,13 @@ public class EmeraldForItems {
         public EntityVillager.ITradeList loadTrade(JsonObject trade) {
             JsonObject from= JsonUtils.getJsonObject(trade,"from");
             JsonObject to=JsonUtils.getJsonObject(trade,"to");
-            return new EmeraldForItemsHileb(TradeBase.getFullItemStack(JsonUtils.getJsonObject(to,"item")),
-                    TradeBase.loadPrice(JsonUtils.getJsonObject(from,"price")
+            if(to.has("item")){
+                return new EmeraldForItemsHileb(TradeBase.getFullItemStack(JsonUtils.getJsonObject(to,"item")),
+                        TradeBase.loadPrice(JsonUtils.getJsonObject(from,"price")
+                        ));
+            }
+            else return new EmeraldForItemsHileb(TradeBase.getFullItemStack(JsonUtils.getJsonObject(from,"item")),
+                    TradeBase.loadPrice(JsonUtils.getJsonObject(to,"price")
                     ));
         }
     }

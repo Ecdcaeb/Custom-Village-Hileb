@@ -10,21 +10,15 @@ import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.crafting.CraftingHelper;
-import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.ModContainer;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -35,7 +29,7 @@ import java.util.List;
 public class CustomVillageLoader {
     public static Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 
-    public static List<LoadedVillage> loadClient(){
+    public static List<LoadedVillage> load(){
         MinecraftForge.EVENT_BUS.post(new CustomVillageLoaderRegisterEvent());
         List<LoadedVillage> list=new ArrayList<>();
         for(ModContainer mod: Loader.instance().getActiveModList()){
@@ -62,7 +56,7 @@ public class CustomVillageLoader {
                                     CustomVillageModMain.LOGGER.info("load village :"+file.getFileName());
                                     list.add(loadedVillage);
                                 }catch (Exception e){
-                                    e.addSuppressed(new Throwable("Error load village at "+file.getFileName()));
+                                    CustomVillageModMain.LOGGER.error("Error load village at "+file.getFileName());
                                     CustomVillageModMain.LOGGER.error(e);
                                 }
 
@@ -88,72 +82,6 @@ public class CustomVillageLoader {
                     },
                     true, true
             );
-        }
-        return list;
-    }
-    @Deprecated
-    @SideOnly(Side.SERVER)
-    public static  List<LoadedVillage> loadServer(){
-        MinecraftForge.EVENT_BUS.post(new CustomVillageLoaderRegisterEvent());
-
-        List<LoadedVillage> list=new ArrayList<>();
-
-        File fileRoot=new File("villages");
-        if (fileRoot.isDirectory()){
-            Iterator<Path> itr = null;
-            try
-            {
-                itr = Files.walk(fileRoot.toPath()).iterator();
-            }
-            catch (IOException e)
-            {
-                FMLLog.log.error("Error iterating filesystem for: {}", "villages", e);
-                return list;
-            }
-
-            while (itr != null && itr.hasNext())
-            {
-                Path root=fileRoot.toPath();
-                Path jsonFile=itr.next();
-                String relative = root.relativize(jsonFile).toString();
-                if ("json".equals(FilenameUtils.getExtension(jsonFile.toString())) && !relative.startsWith("_")) {
-                    String key= String.valueOf(jsonFile.getFileName());
-                    BufferedReader reader = null;
-                    try
-                    {
-                        reader = Files.newBufferedReader(jsonFile);
-                        JsonObject json = JsonUtils.fromJson(GSON, reader, JsonObject.class);
-                        String s=JsonUtils.getString(json,"type");
-                        ResourceLocation resourceLocation=new ResourceLocation(s);
-                        if (VillageReader.REGISTERS.keySet().contains(resourceLocation)){
-                            VillageReader villageReader=VillageReader.REGISTERS.get(resourceLocation);
-                            try{
-                                LoadedVillage loadedVillage=villageReader.load(json);
-                                CustomVillageModMain.LOGGER.info("load village :"+jsonFile.getFileName());
-                                list.add(loadedVillage);
-                            }catch (Exception e){
-                                e.addSuppressed(new Throwable("Error load village at "+jsonFile.getFileName()));
-                                CustomVillageModMain.LOGGER.error(e);
-                            }
-
-                        }else {
-                            CustomVillageModMain.LOGGER.error("type: "+s+" not found!");
-                        }
-                    }
-                    catch (JsonParseException e)
-                    {
-                        CustomVillageModMain.LOGGER.error("Parsing error loading replacement {}", key, e);
-                    }
-                    catch (IOException e)
-                    {
-                        CustomVillageModMain.LOGGER.error("Couldn't read replacement {} from {}", key, jsonFile, e);
-                    }
-                    finally
-                    {
-                        IOUtils.closeQuietly(reader);
-                    }
-                }
-            }
         }
         return list;
     }

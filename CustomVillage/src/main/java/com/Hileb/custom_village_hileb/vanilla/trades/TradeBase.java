@@ -7,7 +7,6 @@ import com.Hileb.custom_village_hileb.reflection.ReflectionHandler;
 import com.google.gson.*;
 import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.entity.passive.EntityVillager;
-import net.minecraft.init.Enchantments;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.JsonToNBT;

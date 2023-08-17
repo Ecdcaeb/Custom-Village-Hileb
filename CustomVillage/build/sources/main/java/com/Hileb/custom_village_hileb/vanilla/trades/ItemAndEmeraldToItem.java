@@ -2,13 +2,9 @@ package com.Hileb.custom_village_hileb.vanilla.trades;
 
 import com.Hileb.custom_village_hileb.vanilla.trades.itrades.ItemAndEmeraldToItemHileb;
 import com.google.gson.JsonObject;
-import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.entity.passive.EntityVillager;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 /**
  * @Project CustomVillage
