@@ -20,12 +20,13 @@ public class ListItemForEmeralds {
         @Override
         public EntityVillager.ITradeList loadTrade(JsonObject trade) {
             JsonObject from= JsonUtils.getJsonObject(trade,"from");
-            int minPrice=JsonUtils.getInt(from,"minPrice");
-            int maxPrice=JsonUtils.getInt(from,"maxPrice");
+//            int minPrice=JsonUtils.getInt(from,"minPrice");
+//            int maxPrice=JsonUtils.getInt(from,"maxPrice");
+            JsonObject price=JsonUtils.getJsonObject(from,"price");
             JsonObject to=JsonUtils.getJsonObject(trade,"to");
             JsonObject item=JsonUtils.getJsonObject(to,"item");
             ItemStack stack=TradeBase.getFullItemStack(item);
-            return new ListItemForEmeraldsHileb(stack,new EntityVillager.PriceInfo(minPrice,maxPrice));
+            return new ListItemForEmeraldsHileb(stack,TradeBase.loadPrice(price));
         }
     }
 }

@@ -12,7 +12,7 @@ import static com.Hileb.custom_village_hileb.CustomVillageModMain.NAME;
  * @Author Hileb
  * @Date 2023/8/14 10:51
  **/
-@Mod(modid = MODID,name =NAME,version = "1.0.2")
+@Mod(modid = MODID,name =NAME,version = "1.1.3")
 public class CustomVillageModMain {
     public static final String MODID="custom_village_hileb";
     public static final String NAME="Custom Village";

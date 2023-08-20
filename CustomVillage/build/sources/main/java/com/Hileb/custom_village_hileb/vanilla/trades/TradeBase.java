@@ -1,8 +1,6 @@
 package com.Hileb.custom_village_hileb.vanilla.trades;
 
-import com.Hileb.custom_village_hileb.json.load.CustomVillageLoader;
-import com.Hileb.custom_village_hileb.json.load.LoadedVillage;
-import com.Hileb.custom_village_hileb.json.load.VillageReader;
+import com.Hileb.custom_village_hileb.json.load.*;
 import com.Hileb.custom_village_hileb.reflection.ReflectionHandler;
 import com.google.gson.*;
 import net.minecraft.enchantment.EnchantmentData;
@@ -14,12 +12,14 @@ import net.minecraft.nbt.NBTException;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * @Project CustomVillage
@@ -122,7 +122,21 @@ public class TradeBase {
         for(JsonElement element:jsonObjects){
             if (element instanceof JsonObject){
                 JsonObject object=(JsonObject) element;
-                int level=JsonUtils.getInt(object,"level");
+                int level=1;
+                if (object.has("level")){
+                    JsonElement p1=object.get("level");
+                    if (p1.isJsonPrimitive() &&p1.getAsJsonPrimitive().isNumber()){
+                        level=p1.getAsInt();
+                    }else if (p1.isJsonObject()){
+                        RangeBase rangeBase=TradeBase.loadPrice(JsonUtils.getJsonObject(object,"level"));
+                        level=rangeBase.get(new Random());
+                    }
+                }
+                FMLLog.log.error("level : "+level);
+//                if (object.get("level") instanceof  )
+//                    JsonUtils.getInt(object,"level");
+//                    if (object.)
+//                }
                 ResourceLocation resourceLocation=new ResourceLocation(JsonUtils.getString(object,"name"));
                 enchantmentData.add(new EnchantmentData(ForgeRegistries.ENCHANTMENTS.getValue(resourceLocation),level));
             }
@@ -138,9 +152,7 @@ public class TradeBase {
         }
         return stack;
     }
-    public static EntityVillager.PriceInfo loadPrice(JsonObject jsonObject){
-        int minPrice2=JsonUtils.getInt(jsonObject,"min");
-        int maxPrice2=JsonUtils.getInt(jsonObject,"max");
-        return new EntityVillager.PriceInfo(minPrice2,maxPrice2);
+    public static RangeBase loadPrice(JsonObject jsonObject){
+        return RangeFactory.getRange(jsonObject);
     }
 }

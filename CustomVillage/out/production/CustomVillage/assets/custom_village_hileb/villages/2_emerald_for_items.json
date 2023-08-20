@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:emerald_for_items",
+  "profession":"cvr:example",
+  "career": "career",
+  "level": 1,
+  "trade":{
+    "from": {
+      "item": {
+        "item": "minecraft:diamond",
+        "count": 1,
+        "data": 0,
+        "nbt": "{haha:true}",
+        "enchantment": [
+          {
+            "name": "minecraft:fire_protection",
+            "level": 12
+          }
+        ]
+      }
+    },
+    "to": {
+      "price": {
+        "min": 1,
+        "max": 2
+      }
+    }
+  }
+}

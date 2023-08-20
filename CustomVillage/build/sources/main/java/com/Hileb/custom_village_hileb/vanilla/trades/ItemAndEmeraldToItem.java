@@ -1,5 +1,6 @@
 package com.Hileb.custom_village_hileb.vanilla.trades;
 
+import com.Hileb.custom_village_hileb.json.load.RangeBase;
 import com.Hileb.custom_village_hileb.vanilla.trades.itrades.ItemAndEmeraldToItemHileb;
 import com.google.gson.JsonObject;
 import net.minecraft.entity.passive.EntityVillager;
@@ -19,10 +20,10 @@ public class ItemAndEmeraldToItem {
         @Override
         public EntityVillager.ITradeList loadTrade(JsonObject trade) {
             JsonObject from= JsonUtils.getJsonObject(trade,"from");
-            EntityVillager.PriceInfo p1=TradeBase.loadPrice(JsonUtils.getJsonObject(from,"price"));
-            EntityVillager.PriceInfo c1=TradeBase.loadPrice(JsonUtils.getJsonObject(from,"count"));
+            RangeBase p1=TradeBase.loadPrice(JsonUtils.getJsonObject(from,"price"));
+            RangeBase c1=TradeBase.loadPrice(JsonUtils.getJsonObject(from,"count"));
             JsonObject to=JsonUtils.getJsonObject(trade,"to");
-            EntityVillager.PriceInfo c2=TradeBase.loadPrice(JsonUtils.getJsonObject(to,"count"));
+            RangeBase c2=TradeBase.loadPrice(JsonUtils.getJsonObject(to,"count"));
             JsonObject item1=JsonUtils.getJsonObject(from,"item");
             JsonObject item2=JsonUtils.getJsonObject(to,"item");
             ItemAndEmeraldToItemHileb t=new ItemAndEmeraldToItemHileb();

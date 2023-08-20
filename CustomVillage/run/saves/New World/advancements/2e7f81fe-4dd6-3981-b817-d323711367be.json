@@ -1,0 +1,24 @@
+{
+  "minecraft:adventure/root": {
+    "criteria": {
+      "killed_something": "2023-08-20 11:18:35 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/building_blocks/emerald_block": {
+    "criteria": {
+      "has_at_least_9_emerald": "2023-08-20 11:17:23 +0800"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "forest": "2023-08-20 11:17:57 +0800",
+      "forest_hills": "2023-08-20 11:17:42 +0800",
+      "plains": "2023-08-20 11:17:23 +0800",
+      "taiga": "2023-08-20 11:18:13 +0800",
+      "river": "2023-08-20 11:18:14 +0800"
+    },
+    "done": false
+  }
+}

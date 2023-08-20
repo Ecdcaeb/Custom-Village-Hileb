@@ -83,11 +83,13 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "E:/project/MC MOD/UnusuallyProjectPack/Custom-Village-Hileb/CustomVillage/src/main/resources"
+    "last_opened_file_path": "E:/project/MC MOD/UnusuallyProjectPack/Custom-Village-Hileb/CustomVillage/src/main/resources/assets/cvh"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\project\MC MOD\UnusuallyProjectPack\Custom-Village-Hileb\CustomVillage\src\main\resources\assets\cvh" />
+      <recent name="E:\project\MC MOD\UnusuallyProjectPack\Custom-Village-Hileb\CustomVillage\src\main\resources\assets\custom_village_hileb" />
       <recent name="E:\project\MC MOD\UnusuallyProjectPack\Custom-Village-Hileb\CustomVillage\src\main\resources" />
       <recent name="E:\project\MC MOD\UnusuallyProjectPack\CustomVillage\runServer" />
       <recent name="E:\project\MC MOD\UnusuallyProjectPack\CustomVillage\src\main\java\com\Hileb\custom_village_hileb\json\read" />
@@ -229,5 +231,19 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="net.minecraft.item.ItemStack" memberName="stackSize" />
+        <PinnedItemInfo parentTag="net.minecraft.entity.passive.EntityVillager" memberName="buyingList" />
+      </pinned-members>
+    </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="stack_3" />
+        <watch expression="stack_3" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

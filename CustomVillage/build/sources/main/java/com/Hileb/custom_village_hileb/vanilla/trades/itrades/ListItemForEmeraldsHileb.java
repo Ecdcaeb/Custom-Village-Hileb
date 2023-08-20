@@ -1,5 +1,6 @@
 package com.Hileb.custom_village_hileb.vanilla.trades.itrades;
 
+import com.Hileb.custom_village_hileb.json.load.RangeBase;
 import net.minecraft.entity.IMerchant;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.init.Items;
@@ -13,6 +14,7 @@ import java.util.Random;
  * @Project CustomVillage
  * @Author Hileb
  * @Date 2023/8/16 14:15
+ * {@link EntityVillager.ListItemForEmeralds}
  **/
 public class ListItemForEmeraldsHileb implements EntityVillager.ITradeList {
     /**
@@ -23,8 +25,8 @@ public class ListItemForEmeraldsHileb implements EntityVillager.ITradeList {
      * The price info for the amount of emeralds to sell for, or if negative, the amount of the item to buy for
      * an emerald.
      */
-    public EntityVillager.PriceInfo priceInfo;
-    public ListItemForEmeraldsHileb(ItemStack stack, EntityVillager.PriceInfo priceInfo) {
+    public RangeBase priceInfo;
+    public ListItemForEmeraldsHileb(ItemStack stack, RangeBase priceInfo) {
         this.itemToBuy = stack;
         this.priceInfo = priceInfo;
     }
@@ -33,18 +35,18 @@ public class ListItemForEmeraldsHileb implements EntityVillager.ITradeList {
         int i = 1;
 
         if (this.priceInfo != null) {
-            i = this.priceInfo.getPrice(random);
+            i = this.priceInfo.get(random);
         }
 
-        ItemStack stackEmerald;
-        ItemStack stack;
+        ItemStack stackEmerald=new ItemStack(Items.EMERALD);
+        ItemStack stack=itemToBuy.copy();
 
         if (i < 0) {
-            stackEmerald = new ItemStack(Items.EMERALD);
-            stack = ItemStack.EMPTY;
+            stackEmerald.setCount(1);
+            stack.setCount(-i);
         } else {
-            stackEmerald = new ItemStack(Items.EMERALD, i, 0);
-            stack = itemToBuy.copy();
+            stackEmerald.setCount(i);
+            stack.setCount(1);
         }
         recipeList.add(new MerchantRecipe(stackEmerald, stack));
     }
